@@ -1,0 +1,24 @@
+{
+  "name": "unban-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for Twitch/Telegram unban purchases",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "SKIP_BOT=true node index.js",
+    "deploy": "./deploy.sh",
+    "status": "systemctl status unban-bot",
+    "restart": "systemctl restart unban-bot",
+    "stop": "systemctl stop unban-bot",
+    "logs": "journalctl -u unban-bot -f",
+    "logs:file": "tail -f logs/bot.log"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "better-sqlite3": "^12.5.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "telegraf": "^4.16.3"
+  }
+}

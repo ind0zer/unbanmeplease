@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnbanMePlease — Быстрый разбан</title>
+    <style>
+        :root {
+            --primary: #9146FF;
+            --accent: #00f2ea;
+            --bg: #0e0e10;
+            --surface: #18181b;
+            --text: #ffffff;
+            --text-sec: #adadb8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            padding: 40px 0 80px;
+            background: radial-gradient(circle at 50% 40%, rgba(145, 70, 255, 0.14) 0%, transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 7vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #adadb8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+            text-wrap: balance;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 3.4vw, 1.5rem);
+            color: var(--text-sec);
+            margin-bottom: 50px;
+            max-width: 600px;
+            font-weight: 400;
+            text-wrap: balance;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 48px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.25rem;
+            border-radius: 100px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 30px rgba(145, 70, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 0 50px rgba(145, 70, 255, 0.5);
+            background: #a970ff;
+        }
+
+        .btn-icon {
+            margin-right: 12px;
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
+
+
+        .copyright {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 32px 0 64px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                padding: 0 32px;
+            }
+
+            .hero {
+                padding: 56px 0 96px;
+            }
+
+            .hero p {
+                max-width: 700px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .hero {
+                background: radial-gradient(circle at 60% 35%, rgba(145, 70, 255, 0.18) 0%, transparent 62%);
+            }
+
+            .btn {
+                padding: 22px 56px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 18px 24px;
+            }
+
+            .copyright {
+                position: static;
+                margin-top: 32px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>Свобода без ожиданий</h1>
+            <p>Самый быстрый способ разбана в Twitch и Telegram. <br> Автоматически, безопасно и моментально.</p>
+            <a href="/app" class="btn">
+                <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                </svg>
+                Открыть WebApp
+            </a>
+            <div class="copyright">&copy; 2026 UnbanMePlease</div>
+        </section>
+    </div>
+</body>
+
+</html>

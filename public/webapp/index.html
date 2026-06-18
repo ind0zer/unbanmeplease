@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>UnbanMePls</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/webapp/styles.css?v=62">
+</head>
+
+<body>
+  <div class="app">
+
+    <header class="header">
+      <div class="brand">
+        <img src="/app/unbanmelogo.png?v=2" alt="UnbanMePlease" class="brand-logo" loading="eager">
+      </div>
+      <div class="switcher">
+        <div class="switcher-track">
+          <button class="switcher-btn active" data-mode="unban">
+            <span class="switcher-icon">🔓</span>
+            <span class="switcher-text">Разбаниться</span>
+          </button>
+          <button class="switcher-btn" data-mode="media">
+            <span class="switcher-icon">🎬</span>
+            <span class="switcher-text">Панель медиа</span>
+          </button>
+          <div class="switcher-indicator"></div>
+        </div>
+      </div>
+    </header>
+
+
+    <main class="content" id="app-content">
+
+    </main>
+  </div>
+
+  <div id="loader-overlay" class="loader-overlay">
+    <div class="loader-content"
+      style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+      <div class="spinner loader-spinner"></div>
+      <div id="loader-text" class="loader-text"
+        style="color: #ffffff; font-weight: 600; font-size: 17px; max-width: 280px; text-align: center; line-height: 1.4;">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal glass-card">
+      <div class="modal-icon" id="modal-icon">⚠️</div>
+      <h3 class="modal-title" id="modal-title">Подтверждение</h3>
+      <p class="modal-text" id="modal-text">Вы уверены?</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="modal-cancel">Отмена</button>
+        <button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <span class="toast-text" id="toast-text">Успешно!</span>
+  </div>
+
+  <script src="/webapp/app.js?v=65"></script>
+</body>
+
+</html>
