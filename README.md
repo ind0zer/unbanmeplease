@@ -46,6 +46,7 @@ The app combines a Telegram bot, a mobile-first WebApp, an Express API, SQLite p
 - [How It Works](#how-it-works)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
+- [Demo and Screenshots](#demo-and-screenshots)
 - [Quick Start](#quick-start)
 - [Environment Variables](#environment-variables)
 - [Telegram Setup](#telegram-setup)
@@ -53,8 +54,12 @@ The app combines a Telegram bot, a mobile-first WebApp, an Express API, SQLite p
 - [Payment Webhooks](#payment-webhooks)
 - [Server Deployment](#server-deployment)
 - [Database](#database)
+- [Documentation](#documentation)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
 - [Security Checklist](#security-checklist)
 - [NPM Scripts](#npm-scripts)
+- [License](#license)
 
 ## Features
 
@@ -125,6 +130,8 @@ The Telegram bot handles onboarding, deep links, creator flows, admin actions, a
 .
 |-- index.js              # bot, API, webhooks, payments
 |-- database.js           # SQLite schema and data access helpers
+|-- docs/                 # architecture, demo notes, and roadmap
+|-- .github/              # issue templates
 |-- public/               # landing page, WebApp, and static assets
 |-- deploy.sh             # systemd deployment helper
 |-- setup.sh              # first-run server setup helper
@@ -136,6 +143,27 @@ The Telegram bot handles onboarding, deep links, creator flows, admin actions, a
 ```
 
 Local runtime files such as `.env`, `database.db`, logs, archives, and OS metadata are intentionally ignored.
+
+## Demo and Screenshots
+
+The app exposes two user-facing surfaces:
+
+| Surface | Local URL | Description |
+| --- | --- | --- |
+| Landing page | `http://localhost:3000/` | Public entry page for the product |
+| Telegram WebApp | `http://localhost:3000/app` | Mobile-first purchase flow and creator dashboard |
+
+For a reviewer, the fastest local demo path is:
+
+```bash
+npm ci
+cp .env.example .env
+npm run dev
+```
+
+Then open `http://localhost:3000/` for the landing page and `http://localhost:3000/app` for the WebApp shell. Telegram-specific flows require a real bot token and an HTTPS WebApp URL.
+
+See [docs/DEMO.md](docs/DEMO.md) for a suggested demo script and review checklist.
 
 ## Quick Start
 
@@ -328,6 +356,32 @@ cp database.db.backup_YYYYMMDD_HHMMSS database.db
 
 Do not commit the database. It can contain users, tokens, payment records, and private configuration.
 
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Demo guide](docs/DEMO.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Security policy](SECURITY.md)
+- [Contributing guide](CONTRIBUTING.md)
+
+## Roadmap
+
+The public roadmap focuses on making the project easier to audit, deploy, and extend:
+
+- Provider adapters for payment integrations.
+- Automated test coverage for webhook signature validation.
+- Docker Compose deployment option.
+- Structured logging and operational health checks.
+- Optional admin WebApp dashboard.
+
+See the full roadmap in [docs/ROADMAP.md](docs/ROADMAP.md).
+
+## Contributing
+
+Contributions are welcome through issues and pull requests. Good first areas include documentation, deployment hardening, tests for payment webhooks, and provider abstraction.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
 ## Security Checklist
 
 - Do not commit `.env`.
@@ -348,3 +402,7 @@ npm run status  # show systemd service status
 npm run restart # restart the systemd service
 npm run logs    # follow systemd service logs
 ```
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
