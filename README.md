@@ -1,42 +1,138 @@
-# UnbanMePlease
+<p align="center">
+  <img src="public/webapp/unbanmelogo.png" alt="UnbanMePlease" width="360">
+</p>
 
-Telegram bot and WebApp for paid unban requests in Twitch and Telegram communities.
+<h1 align="center">UnbanMePlease</h1>
 
-The project includes a Telegram bot, an Express API, a Telegram WebApp, SQLite storage, payment integrations, Twitch verification, promo codes, admin tools, and a production-ready systemd setup.
+<p align="center">
+  Telegram Unban Bot and Twitch/Telegram WebApp for paid community unban requests.
+</p>
+
+<p align="center">
+  <a href="https://nodejs.org/">
+    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
+  </a>
+  <a href="https://expressjs.com/">
+    <img alt="Express" src="https://img.shields.io/badge/Express-5-000000?style=for-the-badge&logo=express&logoColor=white">
+  </a>
+  <a href="https://telegraf.js.org/">
+    <img alt="Telegraf" src="https://img.shields.io/badge/Telegraf-4-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+  <a href="https://www.sqlite.org/">
+    <img alt="SQLite" src="https://img.shields.io/badge/SQLite-WAL-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
+  </a>
+</p>
+
+<p align="center">
+  <img alt="Telegram WebApp" src="https://img.shields.io/badge/Telegram-WebApp-26A5E4?style=flat-square&logo=telegram&logoColor=white">
+  <img alt="Twitch API" src="https://img.shields.io/badge/Twitch-API-9146FF?style=flat-square&logo=twitch&logoColor=white">
+  <img alt="Payments" src="https://img.shields.io/badge/Payments-NicePay%20%7C%20CryptoBot%20%7C%20NOWPayments-111827?style=flat-square">
+  <img alt="Process manager" src="https://img.shields.io/badge/Deploy-systemd-4B5563?style=flat-square">
+</p>
+
+## Overview
+
+UnbanMePlease is a production-oriented Telegram bot and Telegram WebApp for creators, streamers, and community admins who want to sell and manage unban requests for Twitch and Telegram communities.
+
+The app combines a Telegram bot, a mobile-first WebApp, an Express API, SQLite persistence, payment webhooks, Twitch verification, admin tools, promo codes, and a systemd deployment setup.
+
+## Keywords
+
+`telegram bot`, `telegram webapp`, `twitch unban bot`, `telegram unban`, `creator monetization`, `community tools`, `telegraf`, `express`, `sqlite`, `cryptobot`, `nowpayments`, `nicepay`
+
+## Table of Contents
+
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Quick Start](#quick-start)
+- [Environment Variables](#environment-variables)
+- [Telegram Setup](#telegram-setup)
+- [Twitch Setup](#twitch-setup)
+- [Payment Webhooks](#payment-webhooks)
+- [Server Deployment](#server-deployment)
+- [Database](#database)
+- [Security Checklist](#security-checklist)
+- [NPM Scripts](#npm-scripts)
 
 ## Features
 
-- Users can find a creator/channel and submit an unban request.
-- Creators can connect Twitch and Telegram channels, set prices, manage the queue, and request withdrawals.
-- Telegram WebApp login and bot deep links are supported.
-- Admin tools include stats, broadcasts, creator verification, promo code management, and withdrawal handling.
-- Payments are supported through NicePay, CryptoBot, and NOWPayments.
-- Data is stored locally in SQLite.
+### For Users
+
+- Search for a creator or community.
+- Submit Twitch or Telegram unban requests.
+- Pay through supported payment providers.
+- Continue the flow from Telegram deep links or the WebApp.
+
+### For Creators
+
+- Connect Twitch and Telegram channels.
+- Set custom unban prices.
+- Verify Twitch ownership through chat-based verification.
+- Manage incoming unban queue items.
+- Track stats and request withdrawals.
+- Use creator profile links and custom slugs.
+
+### For Admins
+
+- View global platform stats.
+- Verify creator profiles.
+- Manage promo codes.
+- Review withdrawals.
+- Send broadcasts.
+- Control platform-level commission settings.
+
+### Payments and Integrations
+
+- NicePay payment creation and status checks.
+- CryptoBot invoices and webhook verification.
+- NOWPayments payment creation, status checks, and IPN verification.
+- Telegram WebApp auth validation.
+- Twitch API and IRC-based channel verification.
+
+## How It Works
+
+```text
+Telegram Bot / WebApp
+        |
+        v
+Express API on port 3000
+        |
+        +--> SQLite database
+        +--> Telegram Bot API
+        +--> Twitch API / IRC
+        +--> NicePay / CryptoBot / NOWPayments
+```
+
+The Telegram bot handles onboarding, deep links, creator flows, admin actions, and bot-side confirmations. The WebApp provides the user-facing purchase flow and creator dashboard. Express serves the WebApp, API routes, and payment webhooks. SQLite stores users, connected channels, pending actions, payments, promos, config values, and unban queue items.
 
 ## Tech Stack
 
-- Node.js 18+
-- Express 5
-- Telegraf
-- better-sqlite3
-- SQLite in WAL mode
-- Telegram WebApp in `public/webapp`
-- systemd for production process management
+| Area | Technology |
+| --- | --- |
+| Runtime | Node.js 18+ |
+| Bot framework | Telegraf |
+| API server | Express 5 |
+| Database | SQLite with better-sqlite3 |
+| Frontend | Telegram WebApp, HTML, CSS, JavaScript |
+| Payments | NicePay, CryptoBot, NOWPayments |
+| Deployment | systemd |
 
 ## Project Structure
 
 ```text
 .
-├── index.js              # bot, API, webhooks, payments
-├── database.js           # SQLite schema and data access helpers
-├── public/               # landing page, WebApp, and static assets
-├── deploy.sh             # systemd deployment helper
-├── setup.sh              # first-run server setup helper
-├── update-nodejs.sh      # Node.js updater for Ubuntu/Debian
-├── unban-bot.service     # example systemd unit
-├── .env.example          # environment variable template
-├── package.json
-└── package-lock.json
+|-- index.js              # bot, API, webhooks, payments
+|-- database.js           # SQLite schema and data access helpers
+|-- public/               # landing page, WebApp, and static assets
+|-- deploy.sh             # systemd deployment helper
+|-- setup.sh              # first-run server setup helper
+|-- update-nodejs.sh      # Node.js updater for Ubuntu/Debian
+|-- unban-bot.service     # example systemd unit
+|-- .env.example          # environment variable template
+|-- package.json
+`-- package-lock.json
 ```
 
 Local runtime files such as `.env`, `database.db`, logs, archives, and OS metadata are intentionally ignored.
@@ -44,7 +140,7 @@ Local runtime files such as `.env`, `database.db`, logs, archives, and OS metada
 ## Quick Start
 
 ```bash
-git clone https://github.com/your-username/unbanmeplease.git
+git clone https://github.com/ind0zer/unbanmeplease.git
 cd unbanmeplease
 npm ci
 cp .env.example .env
@@ -58,8 +154,10 @@ npm start
 
 The server listens on `0.0.0.0:3000`.
 
-- Landing page: `http://localhost:3000/`
-- WebApp: `http://localhost:3000/app`
+| Route | Purpose |
+| --- | --- |
+| `http://localhost:3000/` | Public landing page |
+| `http://localhost:3000/app` | Telegram WebApp |
 
 For frontend/API development without Telegram polling:
 
@@ -134,7 +232,7 @@ ADMIN_IDS=123456789,987654321
 2. Put the bot token into `TELEGRAM_TOKEN`.
 3. Set `BOT_NAME` to the bot username without `@`.
 4. Host the app on an HTTPS domain.
-5. Set `WEBAPP_URL` to the public WebApp URL:
+5. Set `WEBAPP_URL` to the public WebApp URL.
 
 ```env
 WEBAPP_URL=https://example.com/app
@@ -164,9 +262,9 @@ TWITCH_BOT_LOGIN=
 
 After the first launch, some Twitch settings may be persisted in the SQLite `config` table.
 
-## Webhooks
+## Payment Webhooks
 
-These routes must be available on your public domain:
+These routes must be available on your public HTTPS domain:
 
 ```text
 POST /webhook
@@ -174,7 +272,7 @@ POST /webhook/cryptobot
 POST /webhook/nowpay
 ```
 
-Set the matching HTTPS callback URLs in your payment provider dashboards.
+Set the matching callback URLs in your payment provider dashboards.
 
 For NOWPayments:
 
@@ -192,7 +290,7 @@ Clean installation example:
 ```bash
 sudo mkdir -p /root/unban
 cd /root/unban
-sudo git clone https://github.com/your-username/unbanmeplease.git .
+sudo git clone https://github.com/ind0zer/unbanmeplease.git .
 sudo cp .env.example .env
 sudo nano .env
 sudo chmod +x setup.sh deploy.sh
@@ -230,7 +328,7 @@ cp database.db.backup_YYYYMMDD_HHMMSS database.db
 
 Do not commit the database. It can contain users, tokens, payment records, and private configuration.
 
-## Before Publishing
+## Security Checklist
 
 - Do not commit `.env`.
 - Rotate any token that has ever been committed, shared, or included in an archive.
@@ -238,6 +336,7 @@ Do not commit the database. It can contain users, tokens, payment records, and p
 - Use HTTPS for the WebApp and payment callback URLs.
 - Use a long random `AUTH_TOKEN_SECRET`.
 - Back up `database.db` regularly.
+- Keep payment webhook secrets separate from bot and auth secrets.
 
 ## NPM Scripts
 
